@@ -1,0 +1,14 @@
+Subject: [RUN] Plot IV curve from MPT file
+
+Recipients: jaroslav@herman.cz
+
+data_file: IV_Day1_Procedure1_03_SV_C01.mpt
+output_prefix: iv_plot_360_IrOx_Pt_etched
+
+Please process the attached file and plot Ewe/V as a function of <I>/mA.
+Send the resulting plot back to me.
+
+Thank you.
+
+---
+Attachment: plot_iv_mpt.py
