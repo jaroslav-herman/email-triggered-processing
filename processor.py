@@ -32,6 +32,9 @@ from email.mime.text import MIMEText
 from typing import List, Dict, Any, Optional
 
 # Configure logging
+# Ensure logs directory exists
+os.makedirs('logs', exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -144,7 +147,7 @@ class GmailProcessor:
         try:
             # List existing labels
             status, labels = self.imap_server.list()
-            existing = [label.decode().split(' "/" ')[1] for label in labels if b'\Noselect' not in label]
+            existing = [label.decode().split(' "/" ')[1] for label in labels if b'\\Noselect' not in label]
             
             # Create missing labels
             for label in [self.PROCESSED_LABEL, self.ERROR_LABEL]:
@@ -508,9 +511,9 @@ class GmailProcessor:
             label = self.PROCESSED_LABEL if success else self.ERROR_LABEL
             
             # Copy to processed folder or add label
-            self.imap_server.store(email_id, f'+FLAGS', '\Seen')
+            self.imap_server.store(email_id, '+FLAGS', r'\Seen')
             self.imap_server.copy(email_id, f'"[{label}]"')
-            self.imap_server.store(email_id, '+FLAGS', '\Deleted')
+            self.imap_server.store(email_id, '+FLAGS', r'\Deleted')
             self.imap_server.expunge()
             
             logger.info(f"Marked email {email_id} as {label}")
