@@ -1,0 +1,13 @@
+{
+    "imap_server": "imap.gmail.com",
+    "imap_port": 993,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "your-lab-gmail-account@gmail.com",
+    "password": "your-app-password-or-oauth-token",
+    "data_dir": "/path/to/your/electrochemical/data",
+    "temp_dir": "temp",
+    "poll_interval": 60,
+    "max_attachment_size": 25000000,
+    "log_level": "INFO"
+}
